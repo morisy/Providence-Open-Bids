@@ -129,8 +129,7 @@ class Scraper(CronAddOn):
     def scrape(self, site, depth=0):
         """Scrape the site for new documents"""
         print(f"Scraping {site} (depth {depth})")
-        headers = {'User-Agent': 'Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/534.3 (KHTML, like Gecko) Chrome/6.0.472.63 Safari/534.3'} #Bypass Providence Block
-        resp = requests_retry_session(headers=headers).get(site)
+        resp = requests_retry_session().get(site)
         resp.raise_for_status()
         soup = BeautifulSoup(resp.text, "html.parser")
         docs = []
