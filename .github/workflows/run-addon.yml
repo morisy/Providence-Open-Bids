@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # Run at 22 minutes past the hour, every hour, every day
-    - cron:  "22 * * * *"
+    # - cron:  "22 * * * *" # Disabling -- anti-scraping tools in place
 
 env:
   SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
