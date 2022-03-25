@@ -246,6 +246,13 @@ class Scraper(CronAddOn):
               "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
               "(KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36"
           )
+        self.client.session.headers["User-Agent"] = (
+              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+              "(KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36"
+          )
+        self.client.session.headers["referrer"] = (
+              "https://www.providenceri.gov/purchasing/openrfpsummary/"
+          )
         # grab the base of the URL to stay on site during crawling
         _scheme, netloc, _path, _qs, _anchor = urlparse.urlsplit(self.data["site"])
         self.base_netloc = netloc
