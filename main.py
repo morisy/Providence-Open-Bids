@@ -104,7 +104,7 @@ class Scraper(CronAddOn):
         return content_type == "text/html"
 
     @sleep_and_retry
-    @limits(calls=5, period=1)
+    @limits(calls=1, period=2)
     def get_headers(self, url):
         print("getting headers", url)
         scheme, netloc, path, qs, anchor = urlparse.urlsplit(url)
@@ -243,6 +243,10 @@ class Scraper(CronAddOn):
                 )
 
     def main(self):
+        self.client.session.headers["User-Agent"] = (
+              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+              "(KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36"
+          )
         # grab the base of the URL to stay on site during crawling
         _scheme, netloc, _path, _qs, _anchor = urlparse.urlsplit(self.data["site"])
         self.base_netloc = netloc
